@@ -115,6 +115,7 @@ class Match(object):
 
 
 S_STRING = 0
+S_GROUP = 1
 
 
 class Symbol(object):
@@ -153,6 +154,9 @@ class RegularExpression(object):
         source = s
         i = 0
         t = 0
+        stack = []
+        symbols = self.symbols
+
         while i < len(s) and t < len(self.symbols):
             symbol = self.symbols[t]
             s = s[i:]
@@ -215,6 +219,13 @@ def compile(s):
         expected_ends.append(expected_end)
         symbols = []
 
+    def pop():
+        nonlocal symbols
+        expected_ends.pop()
+        group_symbols = symbols
+        symbols = stack.pop()
+        return group_symbols
+
     def expected_end():
         if expected_ends:
             return expected_ends[-1]
@@ -226,11 +237,13 @@ def compile(s):
         elif accept(T_LPAREN):
             push(T_RPAREN)
         elif accept(expected_end()):
-            
+            emit(S_GROUP, children=pop())
         else:
             if expected_ends:
                 msg = 'Unexpected %r, expected %s' % (
                     token, TOKEN_NAMES[expected_end()])
+            elif accept(T_EOF):
+                continue
             else:
                 msg = 'Unexpected %r' % (token,)
             raise SyntaxError(msg)
