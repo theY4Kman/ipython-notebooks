@@ -1,0 +1,31 @@
+{
+  "name": "yak4000",
+  "version": "0.0.0",
+  "description": "IPython notebooks which back my blog, Yak4000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theY4Kman/ipython-notebooks.git"
+  },
+  "keywords": [
+    "blog",
+    "yak",
+    "y4k"
+  ],
+  "author": "Zach \"theY4Kman\" Kanzler",
+  "license": "Creative Commons Attribution 4.0 International",
+  "bugs": {
+    "url": "https://github.com/theY4Kman/ipython-notebooks/issues"
+  },
+  "homepage": "https://github.com/theY4Kman/ipython-notebooks",
+  "devDependencies": {
+    "coffee-script": "^1.9.1",
+    "gulp": "^3.8.11",
+    "gulp-livereload": "^3.7.0",
+    "gulp-shell": "^0.3.0",
+    "gulp-watch": "^4.1.1"
+  }
+}

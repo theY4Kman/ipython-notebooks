@@ -1,3 +1,7 @@
 .ipynb_checkpoints/
 .idea
 __pycache__
+node_modules/
+
+# Directory where intermediary ipython notebook html is generated
+output/
